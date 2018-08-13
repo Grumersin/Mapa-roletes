@@ -84,7 +84,7 @@ def dibuixar(xr,yr):
 #        punter.color("black")
 #        coord_usat=[]
         
-    if (xr<-690 and xr>-720 and yr<370 and yr>340) or (xr<-520 and xr>-550 and yr<370 and yr>340) or (xr<-370 and xr>-400 and yr<370 and yr>340) or (xr<-220 and xr>-250 and yr<370 and yr>340) or (xr<80 and xr>50 and yr<370 and yr>340) or (xr<-70 and xr>-100 and yr<370 and yr>340) or (xr<230 and xr>200 and yr<370 and yr>340) or (xr<280 and xr>250 and yr<370 and yr>340):
+    if (xr<-690 and xr>-720 and yr<370 and yr>340) or (xr<-520 and xr>-550 and yr<370 and yr>340) or (xr<-370 and xr>-400 and yr<370 and yr>340) or (xr<-220 and xr>-250 and yr<370 and yr>340) or (xr<80 and xr>50 and yr<370 and yr>340) or (xr<-70 and xr>-100 and yr<370 and yr>340) or (xr<230 and xr>200 and yr<370 and yr>340) or (xr<280 and xr>250 and yr<370 and yr>340) or (xr<380 and xr>350 and yr<370 and yr>340):
         compc=False
         compp=False
         compci=False
@@ -234,17 +234,22 @@ def dibuixar(xr,yr):
         punter.color("black")
         click=False
         
-#INTENT TEXT uauau
-#    if compt==True:
-#        punter.penup()
-#        punter.goto(xr,yr)
-#        punter.pendown()
-#        text=input()
-#        punter.write(text,font=("Arial",20)) 
-#        compt=False
+
+    if compt==True:
+        punter.penup()
+        punter.goto(xr,yr)
+        punter.pendown()
+        text=turtle.textinput("Nom","Quin nom li vols posar?")
+        punter.write(text,False,"center",("Arial",20,"bold italic")) 
+        punter.penup()
+        compt=False
+        punter.color("white")
+        creu(punter,350,370)
+        punter.color("black")
+        click=False
         
-            
-    if xr<-690 and xr>-720 and yr<370 and yr>340:
+#--------------------------------------------------------------            
+    if xr<-690 and xr>-720 and yr<370 and yr>340: #Continent
         clicks=[]
         compc=True
         compp=False
@@ -253,11 +258,12 @@ def dibuixar(xr,yr):
         compm=False
         compa=False
         compt=False
+        compll=False
         creu(punter,-720,370)
         coord_usat=[]
         clicks.append([-720,370])
         
-    if xr<-520 and xr>-550 and yr<370 and yr>340:
+    if xr<-520 and xr>-550 and yr<370 and yr>340: #Poble
         clicks=[]
         compc=False
         compp=True
@@ -266,10 +272,11 @@ def dibuixar(xr,yr):
         compm=False
         compa=False
         compt=False
+        compll=False
         creu(punter,-550,370)
         clicks.append([-550,370])
         
-    if xr<-370 and xr>-400 and yr<370 and yr>340:
+    if xr<-370 and xr>-400 and yr<370 and yr>340: #Ciutat
         clicks=[]
         compc=False
         compp=False
@@ -278,10 +285,11 @@ def dibuixar(xr,yr):
         compm=False
         compa=False
         compt=False
+        compll=False
         creu(punter,-400,370)
         clicks.append([-400,370])
         
-    if xr<-220 and xr>-250 and yr<370 and yr>340:
+    if xr<-220 and xr>-250 and yr<370 and yr>340: #Bosc
         clicks=[]
         compc=False
         compp=False
@@ -290,10 +298,11 @@ def dibuixar(xr,yr):
         compm=False
         compa=False
         compt=False
+        compll=False
         creu(punter,-250,370)
         clicks.append([-250,370])
         
-    if xr<80 and xr>50 and yr<370 and yr>340:
+    if xr<80 and xr>50 and yr<370 and yr>340: #Muntanyes
         clicks=[]
         compc=False
         compp=False
@@ -302,10 +311,11 @@ def dibuixar(xr,yr):
         compm=True
         compa=False
         compt=False
+        compll=False
         creu(punter,50,370)
         clicks.append([50,370])
         
-    if xr<-70 and xr>-100 and yr<370 and yr>340:
+    if xr<-70 and xr>-100 and yr<370 and yr>340: #Port
         clicks=[]
         compc=False
         compp=False
@@ -314,21 +324,23 @@ def dibuixar(xr,yr):
         compm=False
         compa=True
         compt=False
+        compll=False
         creu(punter,-100,370)
         clicks.append([-100,370])
- 
-#TEXT       
-#    if xr<230 and xr>200 and yr<370 and yr>340:
-#        compc=False
-#        compp=False
-#        compci=False
-#        compb=False
-#        compm=False
-#        compa=False
-#        compt=True
-#        creu(punter,200,370)
         
-    if xr<280 and xr>250 and yr<370 and yr>340:
+    if xr<380 and xr>350 and yr<370 and yr>340: #Text
+        compc=False
+        compp=False
+        compci=False
+        compb=False
+        compm=False
+        compa=False
+        compt=True
+        compll=False
+        creu(punter,350,370)
+        clicks.append([350,370])
+        
+    if xr<280 and xr>250 and yr<370 and yr>340: #Llac
         clicks=[]
         compc=False
         compp=False
@@ -647,6 +659,7 @@ mapa.title("Mapa")
 punter=turtle.Turtle()
 punter.speed(0)
 punter.penup()
+punter.hideturtle()
 
     
 llegenda(punter,-720,370,"continent")
@@ -655,8 +668,8 @@ llegenda(punter,-400,370,"ciutat")
 llegenda(punter,-250,370,"bosc")
 llegenda(punter,-100,370,"port")
 llegenda(punter,50,370,"muntanyes")
-#llegenda(punter,200,370,"undo")
 llegenda(punter,250,370,"llac")
+llegenda(punter,350,370,"text")
 
 
 
