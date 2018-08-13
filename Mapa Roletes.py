@@ -234,7 +234,7 @@ def dibuixar(xr,yr):
         punter.color("black")
         click=False
         
-#INTENT TEXT
+#INTENT TEXT uauau
 #    if compt==True:
 #        punter.penup()
 #        punter.goto(xr,yr)
