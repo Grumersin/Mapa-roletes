@@ -92,6 +92,7 @@ def dibuixar(xr,yr):
         compm=False
         compa=False
         compt=False
+        compll=False
         if click==True:
             punter.color("white")
             creu(punter,clicks[0][0],clicks[0][1])
@@ -105,6 +106,7 @@ def dibuixar(xr,yr):
             punter.pendown()
             coord_usat.append([xr,yr])
             punter.begin_fill()
+            punter.color("grey")
             punter.fillcolor("darkkhaki")
         else:
             if abs(abs(xr)-abs(coord_usat[0][0]))<7 and abs(abs(yr)-abs(coord_usat[0][1]))<7:
@@ -127,6 +129,7 @@ def dibuixar(xr,yr):
             punter.pendown()
             coord_usat.append([xr,yr])
             punter.begin_fill()
+            punter.color("grey")
             punter.fillcolor("deepskyblue")
         else:
             if abs(abs(xr)-abs(coord_usat[0][0]))<7 and abs(abs(yr)-abs(coord_usat[0][1]))<7:
