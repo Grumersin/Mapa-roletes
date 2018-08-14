@@ -55,36 +55,10 @@ def dibuixar(xr,yr):
     global compll
     global click
     global clicks
-       
-#INTENT DE UNDO
-#    if xr<230 and xr>200 and yr<370 and yr>340:
-#        punter.color("darkkhaki")
-#        punter.fillcolor("darkkhaki")
-#        punter.begin_fill()
-#        if compp==True:
-#            punter.goto(coord_usat[0][0],coord_usat[0][1])
-#            poble(casa,campanar,punter,10,teulada)
-#            
-#        if compci==True:
-#            punter.goto(coord_usat[0][0],coord_usat[0][1])
-#            ciutat(casa,campanar,punter,10,teulada,castell)
-#            
-#        if compb==True:
-#            punter.goto(coord_usat[0][0],coord_usat[0][1])
-#            bosc(arbre,punter,10)            
-#            
-#        if compa==True:
-#            punter.goto(coord_usat[0][0],coord_usat[0][1])
-#            port(punter,10)
-#            
-#        if compm==True:
-#            punter.goto(coord_usat[0][0],coord_usat[0][1])
-#            muntanya(punter,10)
-#        punter.end_fill()
-#        punter.color("black")
-#        coord_usat=[]
+    global undos
+
         
-    if (xr<-690 and xr>-720 and yr<370 and yr>340) or (xr<-520 and xr>-550 and yr<370 and yr>340) or (xr<-370 and xr>-400 and yr<370 and yr>340) or (xr<-220 and xr>-250 and yr<370 and yr>340) or (xr<80 and xr>50 and yr<370 and yr>340) or (xr<-70 and xr>-100 and yr<370 and yr>340) or (xr<230 and xr>200 and yr<370 and yr>340) or (xr<280 and xr>250 and yr<370 and yr>340) or (xr<380 and xr>350 and yr<370 and yr>340):
+    if (xr<-690 and xr>-720 and yr<370 and yr>340) or (xr<-520 and xr>-550 and yr<370 and yr>340) or (xr<-370 and xr>-400 and yr<370 and yr>340) or (xr<-220 and xr>-250 and yr<370 and yr>340) or (xr<80 and xr>50 and yr<370 and yr>340) or (xr<-70 and xr>-100 and yr<370 and yr>340) or (xr<230 and xr>200 and yr<370 and yr>340) or (xr<280 and xr>250 and yr<370 and yr>340) or (xr<380 and xr>350 and yr<370 and yr>340) or (xr<480 and xr>450 and yr<370 and yr>340):
         compc=False
         compp=False
         compci=False
@@ -109,7 +83,7 @@ def dibuixar(xr,yr):
             punter.color("grey")
             punter.fillcolor("darkkhaki")
         else:
-            if abs(abs(xr)-abs(coord_usat[0][0]))<7 and abs(abs(yr)-abs(coord_usat[0][1]))<7:
+            if abs(xr-coord_usat[0][0])<7 and abs(yr-coord_usat[0][1])<7:
                 punter.goto(coord_usat[0][0],coord_usat[0][1])
                 punter.end_fill()
                 punter.penup()
@@ -132,7 +106,7 @@ def dibuixar(xr,yr):
             punter.color("grey")
             punter.fillcolor("deepskyblue")
         else:
-            if abs(abs(xr)-abs(coord_usat[0][0]))<7 and abs(abs(yr)-abs(coord_usat[0][1]))<7:
+            if abs(xr-coord_usat[0][0])<7 and abs(yr-coord_usat[0][1])<7:
                 punter.goto(coord_usat[0][0],coord_usat[0][1])
                 punter.end_fill()
                 punter.penup()
@@ -151,11 +125,11 @@ def dibuixar(xr,yr):
         punter.pendown()
         poble(casa,campanar,punter,10,teulada)
         compp=False
-#        coord_usat.append([xr,yr]) #Això és per l'undo
         punter.color("white")
         creu(punter,-550,370)
         punter.color("black")
         click=False
+        undos="poble"
     
     if compci==True:
         punter.penup()
@@ -163,11 +137,11 @@ def dibuixar(xr,yr):
         punter.pendown()
         ciutat(casa,campanar,punter,10,teulada,castell)
         compci=False
-#        coord_usat.append([xr,yr])#Això és per l'undo
         punter.color("white")
         creu(punter,-400,370)
         punter.color("black")
         click=False
+        undos="ciutat"
             
     if compb==True:        
         if len(lbosc)!=0:
@@ -177,7 +151,6 @@ def dibuixar(xr,yr):
                 punter.pendown()
                 bosc(arbre,punter,10)
                 compb=False
-#                coord_usat.append([xr,yr])#Això és per l'undo
                 punter.color("white")
                 creu(punter,-250,370)
                 punter.color("black")
@@ -189,7 +162,6 @@ def dibuixar(xr,yr):
                 punter.pendown()
                 boscos(bosc,arbre,punter,10,lbosc[0][0],lbosc[0][1],xr,yr)
                 compb=False
-#                coord_usat.append([xr,yr])#Això és per l'undo
                 punter.color("white")
                 creu(punter,-250,370)
                 punter.color("black")
@@ -205,7 +177,6 @@ def dibuixar(xr,yr):
                 punter.goto(lserra[0][0],lserra[0][1])
                 muntanya(punter,10)
                 compm=False
-#                coord_usat.append([xr,yr])#Això és per l'undo
                 punter.color("white")
                 creu(punter,50,370)
                 punter.color("black")
@@ -216,7 +187,6 @@ def dibuixar(xr,yr):
                 punter.goto(lserra[0][0],lserra[0][1])
                 serra(muntanya,punter,10,lserra[0][0],lserra[0][1],xr,yr)
                 compm=False
-#                coord_usat.append([xr,yr])#Això és per l'undo
                 punter.color("white")
                 creu(punter,50,370)
                 punter.color("black")
@@ -231,11 +201,11 @@ def dibuixar(xr,yr):
         punter.pendown()
         port(punter,10)
         compa=False
-#        coord_usat.append([xr,yr])#Això és per l'undo
         punter.color("white")
         creu(punter,-100,370)
         punter.color("black")
         click=False
+        undos="port"
         
 
     if compt==True:
@@ -243,13 +213,32 @@ def dibuixar(xr,yr):
         punter.goto(xr,yr)
         punter.pendown()
         text=turtle.textinput("Nom","Quin nom li vols posar?")
-        punter.write(text,False,"center",("Arial",20,"bold italic")) 
+        punter.write(text,False,"center",("Algerian",18,"bold italic")) 
         punter.penup()
         compt=False
         punter.color("white")
         creu(punter,350,370)
         punter.color("black")
         click=False
+        undos="text"
+        
+    if xr<480 and xr>450 and yr<370 and yr>340: #Undo
+        if undos=="poble":
+            for i in range(180):
+                punter.undo()
+        if undos=="ciutat":
+            for i in range(555):
+                punter.undo()
+        if undos=="port":
+            for i in range(67):
+                punter.undo()
+        if undos=="text":
+            for i in range(25):
+                punter.undo()
+        else:
+            punter.undo()
+        undos=""
+        
         
 #--------------------------------------------------------------            
     if xr<-690 and xr>-720 and yr<370 and yr>340: #Continent
@@ -359,7 +348,7 @@ def dibuixar(xr,yr):
         
 
 
-def creu(tortuga,x,y):
+def creu(tortuga,x,y): #12
     tortuga.penup()
     tortuga.goto(x,y)
     tortuga.setheading(360-45)
@@ -374,7 +363,7 @@ def creu(tortuga,x,y):
     tortuga.penup()
     
 
-def teulada(tortuga,mida):
+def teulada(tortuga,mida): #7
     tortuga.setheading(45)
     tortuga.begin_fill()
     tortuga.forward(mida/2*math.sqrt(2))
@@ -383,7 +372,7 @@ def teulada(tortuga,mida):
     tortuga.fillcolor("red")
     tortuga.end_fill()
 
-def casa(tortuga,mida,teulada):
+def casa(tortuga,mida,teulada): #21
     tortuga.pendown()
     tortuga.begin_fill()
     tortuga.setheading(270)
@@ -400,7 +389,7 @@ def casa(tortuga,mida,teulada):
     tortuga.penup()
     tortuga.setheading(360/5*2)
     
-def campanar(tortuga,mida,teulada):
+def campanar(tortuga,mida,teulada): #30
     tortuga.pendown()
     tortuga.begin_fill()
     tortuga.setheading(270)
@@ -426,7 +415,7 @@ def campanar(tortuga,mida,teulada):
     tortuga.end_fill()
     tortuga.penup()
     
-def poble(casa,campanar,tortuga,mida,teulada):
+def poble(casa,campanar,tortuga,mida,teulada): #161
     tortuga.pendown()
     campanar(tortuga,mida,teulada)
     tortuga.setheading(270)
@@ -442,7 +431,7 @@ def poble(casa,campanar,tortuga,mida,teulada):
     tortuga.penup()
     
     
-def castell(tortuga,mida,teulada):
+def castell(tortuga,mida,teulada): #46
     tortuga.setheading(0)
     tortuga.pendown()
     tortuga.begin_fill()
@@ -478,7 +467,7 @@ def castell(tortuga,mida,teulada):
     tortuga.setheading(180)
     tortuga.penup()
     
-def ciutat(casa,campanar,tortuga,mida,teulada,castell):
+def ciutat(casa,campanar,tortuga,mida,teulada,castell): #540
     castell(tortuga,mida,teulada)
     tortuga.forward(mida*2)
     tortuga.left(90)
@@ -606,7 +595,7 @@ def serra(muntanya, tortuga,mida,x1,y1,x2,y2):
         tortuga.setheading(180)
         tortuga.forward(mida*2)
     
-def port(tortuga,mida):
+def port(tortuga,mida): #43
     tortuga.setheading(170)
     tortuga.pendown()
     tortuga.begin_fill()
@@ -662,7 +651,7 @@ mapa.title("Mapa")
 punter=turtle.Turtle()
 punter.speed(0)
 punter.penup()
-punter.hideturtle()
+#punter.hideturtle()
 
     
 llegenda(punter,-720,370,"continent")
@@ -673,7 +662,7 @@ llegenda(punter,-100,370,"port")
 llegenda(punter,50,370,"muntanyes")
 llegenda(punter,250,370,"llac")
 llegenda(punter,350,370,"text")
-
+llegenda(punter,450,370,"undo")
 
 
 
@@ -690,6 +679,7 @@ click=False
 clicks=[]
 lserra=[]
 lbosc=[]
+undos=""
 mapa.onscreenclick(dibuixar)
 
 
